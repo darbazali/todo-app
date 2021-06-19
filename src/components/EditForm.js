@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Form, Input } from 'antd'
+import { Modal, Input } from 'antd'
 
 const TodoForm = ({
   onChange,
