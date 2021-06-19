@@ -22,7 +22,15 @@ const newTodoButtonStyle = {
 =========================================== */
 const App = () => {
   // todos container
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem('todos')
+    if (savedTodos) {
+      return JSON.parse(savedTodos)
+    } else {
+      return []
+    }
+  })
+
   const [todo, setTodo] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isEditModalVisible, setIsEditModalVisible] = useState(false)
@@ -31,6 +39,10 @@ const App = () => {
   useEffect(() => {
     document.title = `Todo App | ( ${todos.length} ) todo(s)`
   })
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos, todo])
 
   // Submit handler
   const handleSubmit = (e) => {
