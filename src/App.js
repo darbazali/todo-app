@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button } from 'antd'
 import Todo from './components/Todo'
 import TodoForm from './components/TodoForm'
+import EditForm from './components/EditForm'
 
 const appStyles = {
   maxWidth: '800px',
@@ -24,6 +25,8 @@ const App = () => {
   const [todos, setTodos] = useState([])
   const [todo, setTodo] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false)
+  const [selectedTodo, setSelectedTodo] = useState({})
 
   // Submit handler
   const handleSubmit = (e) => {
@@ -52,6 +55,7 @@ const App = () => {
 
   const handleCancel = () => {
     setIsModalVisible(false)
+    setIsEditModalVisible(false)
   }
 
   // handle delete function
@@ -67,6 +71,33 @@ const App = () => {
     const newTodos = [...todos]
     newTodos[index].isCompleted = !newTodos[index].isCompleted
     setTodos(newTodos)
+  }
+
+  // handle update
+
+  const handleUpdateSubmit = () => {
+    let newTodos = [...todos]
+    newTodos = newTodos.map((todo) => {
+      if (todo.id === selectedTodo.id) {
+        return selectedTodo
+      }
+      return todo
+    })
+    console.log('last update==>', newTodos)
+    setTodos(newTodos)
+    setSelectedTodo({})
+    setIsEditModalVisible(false)
+  }
+
+  // cancle update modal
+  const handleUpdateCancel = () => {
+    setIsEditModalVisible(false)
+  }
+
+  // open update modal
+  const handleUpdateCick = (todo) => {
+    setSelectedTodo(todo)
+    setIsEditModalVisible(true)
   }
 
   return (
@@ -97,6 +128,18 @@ const App = () => {
         isModalVisible={isModalVisible}
       />
 
+      <EditForm
+        onSubmit={handleUpdateSubmit}
+        onChange={(e) => {
+          console.log(e.target.value)
+          setSelectedTodo({ ...selectedTodo, todo: e.target.value })
+        }}
+        handleKeyDown={handleKeyDown}
+        handleCancel={handleUpdateCancel}
+        isEditModalVisible={isEditModalVisible}
+        value={selectedTodo.todo}
+      />
+
       {/* List all available todos */}
       {todos.length === 0
         ? 'You have no todos'
@@ -108,6 +151,7 @@ const App = () => {
               isCompleted={todo.isCompleted}
               handleDelete={handleDelete}
               handleComplete={handleComplete}
+              handleUpdateCick={() => handleUpdateCick(todo)}
             />
           ))}
     </div>
