@@ -1,0 +1,30 @@
+import React from 'react'
+import { Modal, Input, Button } from 'antd'
+
+const TodoForm = ({
+  onChange,
+  onSubmit,
+  handleKeyDown,
+  handleCancel,
+  value,
+  isModalVisible,
+}) => {
+  return (
+    <Modal
+      title='Create new todo'
+      visible={isModalVisible}
+      onOk={onSubmit}
+      onCancel={handleCancel}
+    >
+      <Input
+        placeholder='input todo text'
+        size='large'
+        value={value}
+        onChange={onChange}
+        onKeyDown={handleKeyDown}
+      />
+    </Modal>
+  )
+}
+
+export default TodoForm
