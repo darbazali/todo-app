@@ -7,6 +7,13 @@ const appStyles = {
   maxWidth: '800px',
   margin: '0 auto',
   padding: '2rem',
+  position: 'relative',
+}
+
+const newTodoButtonStyle = {
+  position: 'absolute',
+  top: '3.5rem',
+  right: '2rem',
 }
 
 /* ===========================================
@@ -50,10 +57,16 @@ const App = () => {
     <div style={appStyles}>
       <h1>iTodos</h1>
 
+      {/* 
+        New todo button
+        Opens up the modal
+      */}
+
       <Button
         type='primary'
         size='large'
         onClick={() => setIsModalVisible(true)}
+        style={newTodoButtonStyle}
       >
         Create new todo
       </Button>
