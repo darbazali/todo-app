@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from 'antd'
 import Todo from './components/Todo'
 import TodoForm from './components/TodoForm'
@@ -27,6 +27,10 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [isEditModalVisible, setIsEditModalVisible] = useState(false)
   const [selectedTodo, setSelectedTodo] = useState({})
+
+  useEffect(() => {
+    document.title = `Todo App | ( ${todos.length} ) todo(s)`
+  })
 
   // Submit handler
   const handleSubmit = (e) => {
