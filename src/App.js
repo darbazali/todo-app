@@ -55,10 +55,10 @@ const App = () => {
   }
 
   // handle delete function
-  const handleDelete = (e) => {
+  const handleDelete = (index) => {
     // prompt ther user to be sure
     if (window.confirm('Are you sure?')) {
-      setTodos(todos.filter((todo) => todo.id !== Number(e.target.id)))
+      setTodos(todos.filter((todo) => todo.id !== index))
     }
   }
 
@@ -104,8 +104,7 @@ const App = () => {
             <Todo
               todo={todo.todo}
               key={todo.id}
-              id={todo.id}
-              index={todo.id - 1}
+              index={todo.id}
               isCompleted={todo.isCompleted}
               handleDelete={handleDelete}
               handleComplete={handleComplete}
