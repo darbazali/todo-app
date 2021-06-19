@@ -33,6 +33,7 @@ const App = () => {
       todos.push({
         id: todos.length + 1,
         todo: todo.trim(),
+        isCompleted: false,
       })
       setTodo('')
       setIsModalVisible(false)
@@ -59,6 +60,13 @@ const App = () => {
     if (window.confirm('Are you sure?')) {
       setTodos(todos.filter((todo) => todo.id !== Number(e.target.id)))
     }
+  }
+
+  // handle complete todo
+  const handleComplete = (index) => {
+    const newTodos = [...todos]
+    newTodos[index].isCompleted = !newTodos[index].isCompleted
+    setTodos(newTodos)
   }
 
   return (
@@ -97,7 +105,10 @@ const App = () => {
               todo={todo.todo}
               key={todo.id}
               id={todo.id}
+              index={todo.id - 1}
+              isCompleted={todo.isCompleted}
               handleDelete={handleDelete}
+              handleComplete={handleComplete}
             />
           ))}
     </div>
