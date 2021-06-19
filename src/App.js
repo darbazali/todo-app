@@ -100,11 +100,11 @@ const App = () => {
       {/* List all available todos */}
       {todos.length === 0
         ? 'You have no todos'
-        : todos.map((todo) => (
+        : todos.map((todo, index) => (
             <Todo
               todo={todo.todo}
               key={todo.id}
-              index={todo.id}
+              index={index}
               isCompleted={todo.isCompleted}
               handleDelete={handleDelete}
               handleComplete={handleComplete}

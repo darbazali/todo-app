@@ -12,7 +12,7 @@ const Todo = ({ todo, handleDelete, handleComplete, isCompleted, index }) => {
 
       {/* buttons wrapper */}
       <div>
-        <Button type='danger' onClick={() => handleDelete(index)}>
+        <Button type='danger' onClick={() => handleDelete(index + 1)}>
           <DeleteOutlined />
         </Button>
       </div>
