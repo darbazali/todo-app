@@ -21,7 +21,7 @@ const newTodoButtonStyle = {
 =========================================== */
 const App = () => {
   // todos container
-  const [todos] = useState([])
+  const [todos, setTodos] = useState([])
   const [todo, setTodo] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
 
@@ -53,6 +53,14 @@ const App = () => {
     setIsModalVisible(false)
   }
 
+  // handle delete function
+  const handleDelete = (e) => {
+    // prompt ther user to be sure
+    if (window.confirm('Are you sure?')) {
+      setTodos(todos.filter((todo) => todo.id !== Number(e.target.id)))
+    }
+  }
+
   return (
     <div style={appStyles}>
       <h1>iTodos</h1>
@@ -82,9 +90,16 @@ const App = () => {
       />
 
       {/* List all available todos */}
-      {todos.map((todo) => (
-        <Todo todo={todo.todo} key={todo.id} />
-      ))}
+      {todos.length === 0
+        ? 'You have no todos'
+        : todos.map((todo) => (
+            <Todo
+              todo={todo.todo}
+              key={todo.id}
+              id={todo.id}
+              handleDelete={handleDelete}
+            />
+          ))}
     </div>
   )
 }

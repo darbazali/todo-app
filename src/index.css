@@ -23,6 +23,9 @@ h3 {
 .todo {
   border-bottom: 1px solid rgb(224, 224, 224);
   margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {
