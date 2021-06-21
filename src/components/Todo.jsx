@@ -9,6 +9,7 @@ const Todo = ({
   handleUpdateCick,
   isCompleted,
   index,
+  id,
 }) => (
   <div className="todo">
     <h3>
@@ -21,7 +22,7 @@ const Todo = ({
     <div>
       <Button
         type="danger"
-        onClick={() => handleDelete(index + 1)}
+        onClick={() => handleDelete(id)}
         style={{ marginRight: '1rem' }}
       >
         <DeleteOutlined />

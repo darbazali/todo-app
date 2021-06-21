@@ -76,11 +76,11 @@ const App = () => {
   };
 
   // handle delete function
-  const handleDelete = (index) => {
+  const handleDelete = (todoId) => {
     // prompt ther user to be sure
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
-      setTodos(todos.filter((todoItem) => todoItem.id !== index));
+      setTodos(todos.filter((todoItem) => todoItem.id !== todoId));
     }
   };
 
@@ -165,6 +165,7 @@ const App = () => {
           <Todo
             todo={todoItem.todo}
             key={todoItem.id}
+            id={todoItem.id}
             index={index}
             isCompleted={todoItem.isCompleted}
             handleDelete={handleDelete}
