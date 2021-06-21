@@ -101,7 +101,7 @@ const App = () => {
       }
       return todoItem;
     });
-    console.log('last update==>', newTodos);
+    // console.log('last update==>', newTodos);
     setTodos(newTodos);
     setSelectedTodo({});
     setIsEditModalVisible(false);
@@ -149,7 +149,7 @@ const App = () => {
       <EditForm
         onSubmit={handleUpdateSubmit}
         onChange={(e) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           setSelectedTodo({ ...selectedTodo, todo: e.target.value });
         }}
         handleKeyDown={handleKeyDown}
